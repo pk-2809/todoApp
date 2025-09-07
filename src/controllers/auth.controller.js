@@ -17,3 +17,39 @@ export const register = async (req, res) => {
     });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { email, password } = req.body;
+    const newUser = await AuthService.loginUser({ email, password });
+
+    res.status(201).json({
+      message: "User login successfully",
+      data: newUser,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(err.statusCode || 500).json({
+      message: err.message || "Server error",
+    });
+  }
+};
+
+export const forgotPassword = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { email, password } = req.body;
+    const newUser = await AuthService.forgotPassword({ email, password });
+
+    res.status(201).json({
+      message: "Password updated successfully",
+      data: newUser,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(err.statusCode || 500).json({
+      message: err.message || "Server error",
+    });
+  }
+};
