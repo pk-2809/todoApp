@@ -1,6 +1,7 @@
 import express from "express";
 import AuthRoutes from "./routes/auth.route.js";
 import cors from "cors";
+import TaskRoutes from "./routes/tasks.route.js";
 const app = express();
 
 app.use(cors({
@@ -15,5 +16,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", AuthRoutes);
+app.use("/api/tasks", TaskRoutes);
 
 export default app;
